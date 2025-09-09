@@ -16,6 +16,7 @@
 	import { supabase } from '$lib/supabaseClient';
 
 	import { fetchLessonId } from '$lib/utils/fetchLessonId';
+	import { fetchTotalLessons } from '$lib/utils/fetchTotalLessons'
 
 	import {
 		faAngleUp,
@@ -43,6 +44,12 @@ let lessonIdNumber : number = 0;
     
     $: if (lessonId) {
         fetchLessonId(lessonId).then(id => lessonIdNumber = id);
+    }
+
+let totalLessonsNumber : number = 0;
+    
+    $: {
+        fetchTotalLessons().then(length => totalLessonsNumber = length);
     }
 
 	//let lessonId = data.lessonId; // Use the lessonId passed from the load function
@@ -271,7 +278,7 @@ let lessonIdNumber : number = 0;
 		>
 			<h2 class="flex items-center py-0 gap-4">
 				<FontAwesomeIcon icon={faChalkboardUser} /> Lesson
-			</h2> <h2>{lessonIdNumber}</h2>
+			</h2> <h2>{lessonIdNumber}</h2> <h1>{totalLessonsNumber}</h1>
 			<!-- Toggle Panel 1 width -->
 			<button
 				type="button"
