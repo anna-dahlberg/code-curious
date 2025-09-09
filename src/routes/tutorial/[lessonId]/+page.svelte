@@ -265,7 +265,7 @@ const style = document.createElement('style');
 style.textContent = `
 .progress-dots {
   -webkit-mask: radial-gradient(circle closest-side,#000 94%,#0000) 0 0/calc(100% / var(--total)) 100%, linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;
-  background: linear-gradient(#25b09b 0 0) 0/calc(var(--filled) / var(--total) * 100%) no-repeat #ddd;
+  background: linear-gradient(#6466f1 0 0) 0/calc(var(--filled) / var(--total) * 100%) no-repeat #ddd;
 }
 `;
 document.head.appendChild(style);
@@ -286,7 +286,7 @@ document.head.appendChild(style);
 			<h2 class="flex items-center py-0 gap-4">
 				<FontAwesomeIcon icon={faChalkboardUser} /> Lesson
 			</h2>
-			<h2>{lessonIdNumber} / {totalLessonsNumber}</h2>
+			<h2 class="lg:hidden xl:block">{lessonIdNumber} / {totalLessonsNumber}</h2>
 			<div class="progress-dots w-[120px] h-6" 
      style="--total: {totalLessonsNumber}; --filled: {lessonIdNumber}"></div>
 			<!-- Toggle Panel 1 width -->
