@@ -15,6 +15,8 @@
 	import { executeAction } from '$lib/utils/actions';
 	import { supabase } from '$lib/supabaseClient';
 
+	import { fetchLessonId } from '$lib/utils/fetchLessonId';
+
 	import {
 		faAngleUp,
 		faAngleDown,
@@ -37,6 +39,12 @@
 	import Matter from '../../../components/Matter.svelte';
 	import type { LessonData, Log } from '$lib/types';
 
+let lessonIdNumber : number = 0;
+    
+    $: if (lessonId) {
+        fetchLessonId(lessonId).then(id => lessonIdNumber = id);
+    }
+
 	//let lessonId = data.lessonId; // Use the lessonId passed from the load function
 	let lessonId = $page.params.lessonId; // Use the lessonId from the route params
 	let lessonData: LessonData = {
@@ -53,6 +61,8 @@
 			scene: '',
 		},
 	};
+
+	
 
 	// Flags
 	let showTutorial = false; // Flag to show tutorial after scrolling
@@ -261,7 +271,7 @@
 		>
 			<h2 class="flex items-center py-0 gap-4">
 				<FontAwesomeIcon icon={faChalkboardUser} /> Lesson
-			</h2>
+			</h2> <h2>{lessonIdNumber}</h2>
 			<!-- Toggle Panel 1 width -->
 			<button
 				type="button"
