@@ -26,6 +26,15 @@
 		newObject = false;
 		newArray = false;
 	};
+
+	const stringKey = document.addEventListener('keypress', (e) => {
+
+		if (e.key === 's') {
+			console.log('Du har skrivit ett S')
+		}
+
+	})
+
 </script>
 
 <div class="flex flex-col gap-2">
