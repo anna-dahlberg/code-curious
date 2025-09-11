@@ -13,6 +13,18 @@
 	const handleClose = () => {
 		newLog = false;
 	};
+
+	document.addEventListener('keypress', (e) => {
+		const validKeys = ['2'];
+		
+		if (validKeys.includes(e.key)) {
+			toggleLog();
+			
+			switch (e.key) {
+				case '2': newLog = true; break;
+			}
+		}
+	});
 </script>
 
 <button on:click={toggleLog} class="btn btn-sm bg-primary-900 flex gap-2">
