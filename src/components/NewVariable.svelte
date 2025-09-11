@@ -28,25 +28,20 @@
 	};
 
 	document.addEventListener('keypress', (e) => {
-
-		if (e.key === 's') {
-			toggleMenu();
-			newString = true;
-		} else if (e.key === 'n') {
-			toggleMenu();
-			newNumber = true;
-		} else if (e.key === 'b') {
-			toggleMenu();
-			newBoolean = true;
-		} else if (e.key === 'o') {
-			toggleMenu();
-			newObject = true;
-		} else if (e.key === 'a') {
-			toggleMenu();
-			newArray = true;
-		}
-
-	});
+    const validKeys = ['s', 'n', 'b', 'o', 'a'];
+    
+    if (validKeys.includes(e.key)) {
+        toggleMenu();
+        
+        switch (e.key) {
+            case 's': newString = true; break;
+            case 'n': newNumber = true; break;
+            case 'b': newBoolean = true; break;
+            case 'o': newObject = true; break;
+            case 'a': newArray = true; break;
+        }
+    }
+});
 
 </script>
 
