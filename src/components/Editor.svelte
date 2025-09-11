@@ -159,6 +159,17 @@
 			animateLoadIcon = false; // Reset the animation after it plays
 		}, 500); // Match the duration of the CSS animation
 	}
+
+	document.addEventListener('keypress', (e) => {
+		const validKeys = ['3'];
+		
+		if (validKeys.includes(e.key)) {
+			
+			switch (e.key) {
+				case '3': newAction = true; break;
+			}
+		}
+	});
 </script>
 
 <div class="min-h-[320px] md:min-h-[360px] lg:min-h-[400px] flex flex-col justify-start gap-2">

@@ -14,7 +14,7 @@
 		newLog = false;
 	};
 
-		document.addEventListener('keypress', (e) => {
+	document.addEventListener('keypress', (e) => {
 		const validKeys = ['2'];
 		
 		if (validKeys.includes(e.key)) {
