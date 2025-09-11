@@ -27,13 +27,26 @@
 		newArray = false;
 	};
 
-	const stringKey = document.addEventListener('keypress', (e) => {
+	document.addEventListener('keypress', (e) => {
 
 		if (e.key === 's') {
-			console.log('Du har skrivit ett S')
+			toggleMenu();
+			newString = true;
+		} else if (e.key === 'n') {
+			toggleMenu();
+			newNumber = true;
+		} else if (e.key === 'b') {
+			toggleMenu();
+			newBoolean = true;
+		} else if (e.key === 'o') {
+			toggleMenu();
+			newObject = true;
+		} else if (e.key === 'a') {
+			toggleMenu();
+			newArray = true;
 		}
 
-	})
+	});
 
 </script>
 
