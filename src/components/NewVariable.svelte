@@ -26,6 +26,24 @@
 		newObject = false;
 		newArray = false;
 	};
+
+	document.addEventListener('keypress', (e) => {
+		const validKeys = ['s', 'n', 'b', 'o', 'a', '1'];
+		
+		if (validKeys.includes(e.key)) {
+			toggleMenu();
+			
+			switch (e.key) {
+				case '1': showMenu = true; break;
+				case 's': newString = true; break;
+				case 'n': newNumber = true; break;
+				case 'b': newBoolean = true; break;
+				case 'o': newObject = true; break;
+				case 'a': newArray = true; break;
+			}
+		}
+	});
+
 </script>
 
 <div class="flex flex-col gap-2">

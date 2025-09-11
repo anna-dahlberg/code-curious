@@ -15,6 +15,9 @@
 	import { executeAction } from '$lib/utils/actions';
 	import { supabase } from '$lib/supabaseClient';
 
+	import { fetchLessonId } from '$lib/utils/fetchLessonId';
+	import { fetchTotalLessons } from '$lib/utils/fetchTotalLessons';
+
 	import {
 		faAngleUp,
 		faAngleDown,
@@ -36,6 +39,18 @@
 	import Console from '../../../components/Console.svelte';
 	import Matter from '../../../components/Matter.svelte';
 	import type { LessonData, Log } from '$lib/types';
+
+	let lessonIdNumber: number = 0;
+
+	$: if (lessonId) {
+		fetchLessonId(lessonId).then((id) => (lessonIdNumber = id));
+	}
+
+	let totalLessonsNumber: number = 0;
+
+	$: {
+		fetchTotalLessons().then((length) => (totalLessonsNumber = length));
+	}
 
 	//let lessonId = data.lessonId; // Use the lessonId passed from the load function
 	let lessonId = $page.params.lessonId; // Use the lessonId from the route params
@@ -245,6 +260,15 @@
 		// Set navigating flag to true
 		navigating = true;
 	});
+
+const style = document.createElement('style');
+style.textContent = `
+.progress-dots {
+  -webkit-mask: radial-gradient(circle closest-side,#000 94%,#0000) 0 0/calc(100% / var(--total)) 100%, linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;
+  background: linear-gradient(#6466f1 0 0) 0/calc(var(--filled) / var(--total) * 100%) no-repeat #ddd;
+}
+`;
+document.head.appendChild(style);
 </script>
 
 <!-- Panel 1: Lesson -->
@@ -262,6 +286,9 @@
 			<h2 class="flex items-center py-0 gap-4">
 				<FontAwesomeIcon icon={faChalkboardUser} /> Lesson
 			</h2>
+			<h2 class="lg:hidden xl:block">{lessonIdNumber} / {totalLessonsNumber}</h2>
+			<div class="progress-dots w-[120px] h-6" 
+     style="--total: {totalLessonsNumber}; --filled: {lessonIdNumber}"></div>
 			<!-- Toggle Panel 1 width -->
 			<button
 				type="button"
